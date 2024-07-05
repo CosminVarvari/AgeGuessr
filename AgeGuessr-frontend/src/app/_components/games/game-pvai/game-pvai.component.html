@@ -1,0 +1,62 @@
+<div class="pvai" *ngIf="!gameFinished; else resultTemplate">
+    <app-navbar></app-navbar>
+    <div class="pvai-content">
+        <div class="lobby" *ngIf="!gameStarted">
+            <div class="description">
+                <img class="description-image" src="../../../../assets/images/pvai.jpg" />
+                <hr class="styled-line">
+                <p class="description-text">
+                    In Age Guessing Game's Player vs AI game mode, players estimate the age of people in images by competing against an artificial intelligence algorithm. The player inputs the age estimate and the AI ​​does the same. At the end, the estimates are compared to the actual age and points are awarded.
+                    <br/>
+                    <br/>
+                    The mode provides an engaging and educational experience, stimulating the observation and estimation skills of the players, while providing a challenging competition against modern technology.
+                </p>
+            </div>
+            <div class="rules">
+                <h2>How to play</h2>
+                <ul>
+                    <li *ngIf="difficulty == 'easy'">You chose the 'Easy' difficulty.</li>
+                    <li *ngIf="difficulty == 'hard'">You chose the 'Hard' difficulty.</li>
+                    <li>You have 15 seconds to guess the age of the person in the image.</li>
+                    <li>Try to get as close as possible to the actual age to win!</li>
+                </ul>
+                <button mat-flat-button [disabled]="isDisabled" class="btn-start" (click)="startGame(15)">
+                    Start Game
+                </button>
+            </div>
+        </div>
+        <div class="game" *ngIf="gameStarted">
+            <div class="timer">{{ curSec }}s</div>
+            <mat-progress-bar mode="determinate" [value]="progressbarValue"></mat-progress-bar>
+            <img [src]="'../../../../assets/images/ai/' + this.game.image?.imgPath" />
+            <div class="form">
+                <mat-form-field appearance="outline">
+                    <mat-label>Guess the Age</mat-label>
+                    <input matInput type="number" [(ngModel)]="userAnswer" />
+                </mat-form-field>
+                <button mat-flat-button class="btn-guess" (click)="submitAnswer()">
+                    Submit
+                </button>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+<ng-template #resultTemplate>
+    <div class="pvai">
+        <app-navbar></app-navbar>
+        <div class="pvai-content">
+            <div class="results">
+                <h2 *ngIf="winner !== 'ai'">Congratulations! You won!</h2>
+                <h2 *ngIf="winner === 'ai'">Sorry, the AI won. Try again!</h2>
+                <p>Real Age: {{ realAge }}</p>
+                <p>Ai Answer: {{ aiAnswer }}</p>
+                <p>Your answer: {{userAnswer}}</p>
+                <p>Winner: {{ winner }}</p>
+                <button mat-flat-button class="btn-start" (click)="goHome()">Play again</button>
+            </div>
+        </div>
+        <app-footer></app-footer>
+    </div>
+</ng-template>

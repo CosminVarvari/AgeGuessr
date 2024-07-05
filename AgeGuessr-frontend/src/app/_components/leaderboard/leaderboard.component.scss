@@ -1,0 +1,56 @@
+.example-container {
+    position: relative;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .title {
+        margin: auto;
+        width: 50%;
+    }
+  }
+  
+//   .example-loading-shade {
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+//     bottom: 0;
+//     right: 0;
+//     background: rgba(0, 0, 0, 0.15);
+//     z-index: 1;
+//     display: flex;
+//     align-items: center;
+//     justify-content: center;
+//   }
+  
+//   .example-table-container {
+//     position: relative;
+//     max-height: 600px;
+//     overflow: auto;
+//     max-width: 1000px;
+//     margin-left: 10%;
+//   }
+  
+//   .example-rate-limit-reached {
+//     max-width: 360px;
+//     text-align: center;
+//     margin: 16px;
+//   }
+  
+//   table {
+//     width: 100%;
+//   }
+  
+//   .mat-column-number,
+//   .mat-column-state {
+//     max-width: 64px;
+//   }
+  
+//   .mat-column-created {
+//     max-width: 124px;
+//   }
+  

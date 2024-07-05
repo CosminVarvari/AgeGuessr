@@ -1,0 +1,66 @@
+<div class="home">
+  <app-navbar></app-navbar>
+  <div class="home-content">
+    <div *ngIf="!AIGameMode" class="card">
+      <div class="icon">
+        <mat-icon [ngStyle]="{ color: 'white' }">smart_toy</mat-icon>
+      </div>
+      <div class="text">
+        <h2>Player VS AI</h2>
+        <p>
+          Test your skills against our advanced AI! Can you beat the machine and prove you're the best at guessing ages? Challenge yourself now and see how you stack up against artificial intelligence.
+        </p>
+        <button mat-flat-button (click)="aiGameModeToggle()">PLAY NOW</button>
+      </div>
+    </div>
+    <div *ngIf="!AIGameMode" class="card">
+      <div class="icon">
+        <mat-icon [ngStyle]="{ color: 'white' }">person</mat-icon>
+      </div>
+      <div class="text">
+        <h2>Player VS Player</h2>
+        <p>
+          Go head-to-head with other players! Compete to see who has the best eye for guessing ages. Invite your friends and find out who the real age-guessing champion is.
+        </p>
+        <button mat-flat-button (click)="goToPVP()">PLAY NOW</button>
+      </div>
+    </div>
+    <button *ngIf="AIGameMode" mat-button (click)="cancelAIGameMode()" class="back-button">
+      <span [ngStyle]="{ color: 'white' }" class="material-icons">arrow_back</span>
+    </button>
+    <mat-card *ngIf="AIGameMode" class="ai-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>EZ MODE AI</mat-card-title>
+        <mat-card-subtitle>EasyBot</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/images/AIEASY.jpg" alt="Easy AI" />
+      <mat-card-content>
+        <p>
+          Test your skills in EZ Mode! This friendly AI is perfect for beginners who want to practice and improve their age-guessing abilities. Can you outsmart EasyBot and prove who the real age guesser is?
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button class="btn-play" (click)="goToPVAI('easy')">PLAY</button>
+        <button mat-button class="btn-lm" (click)="goToPVAI('hard')">learn more...</button>
+      </mat-card-actions>
+    </mat-card>
+    <mat-card *ngIf="AIGameMode" class="ai-card" appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>EXTREME MODE AI</mat-card-title>
+        <mat-card-subtitle>GeniusBot</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="../../../assets/images/AIHARD.jpg" alt="Hard AI" />
+      <mat-card-content>
+        <p>
+          Ready for a real challenge? Take on GeniusBot in Extreme Mode! This advanced AI is designed to test even the most experienced players. Are you up for the ultimate age-guessing showdown?
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button class="btn-play" (click)="goToPVAI('hard')">PLAY</button>
+        <button mat-button class="btn-lm" (click)="goToPVAI('hard')">learn more...</button>
+      </mat-card-actions>
+    </mat-card>
+
+  </div>
+  <app-footer></app-footer>
+</div>

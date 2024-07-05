@@ -1,0 +1,13 @@
+<div class="history-container">
+    <app-navbar></app-navbar>
+    <h1>Game History</h1>
+    <ng-container *ngIf="paginator">
+      <div *ngFor="let game of dataSource.data.slice(paginator.pageIndex * paginator.pageSize, (paginator.pageIndex + 1) * paginator.pageSize)" class="game-entry">
+        <p>Game between: {{ game.username1 }} vs {{ game.is_pvai ? 'EasyAI' : game.username2 }}</p>
+        <p>Winner: {{ game.winner }}</p>
+      </div>
+    </ng-container>
+    <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+    <app-footer></app-footer>
+  </div>
+  

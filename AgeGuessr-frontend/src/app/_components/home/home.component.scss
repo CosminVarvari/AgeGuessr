@@ -1,0 +1,191 @@
+@import './../../../assets/styles/variables.scss';
+
+.home {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &-content {
+        position: relative;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        background: $primary-grey;
+
+        .card {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            position: relative;
+            width: 320px;
+            height: 450px;
+            margin: 50px;
+            border-radius: 20px;
+            border-bottom-left-radius: 160px;
+            border-bottom-right-radius: 160px;
+            box-shadow: 0 15px 0 $white,
+                inset 0 -15px 0 rgba(255, 255, 255, 0.24),
+                0 45px 0 rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            color: $white;
+
+            &::before {
+                content: "";
+                position: absolute;
+                top: -140px;
+                left: -40%;
+                padding: 0;
+                width: 100%;
+                height: 120%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2));
+                transform: rotate(35deg);
+                pointer-events: none;
+                filter: blur(5px);
+            }
+    
+            &:nth-child(1) {
+                background: linear-gradient(to bottom, #ff2ae0, #645bf6);
+            }
+    
+            &:nth-child(2) {
+                background: linear-gradient(to bottom, #ffec61, #f321d7);
+            }
+    
+            .icon {
+                position: relative;
+                width: 140px;
+                height: 120px;
+                background: $primary-grey;
+                border-bottom-left-radius: 100px;
+                border-bottom-right-radius: 100px;
+                box-shadow: 0 15px 0 rgba(0, 0, 0, 0.1),
+                    inset 0 -8px 0 #fff;
+                z-index: 100;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+
+                &::before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: -50px;
+                    width: 50px;
+                    height: 50px;
+                    background: transparent;
+                    border-top-right-radius: 50px;
+                    box-shadow: 15px -15px 0 15px $primary-grey;
+                }
+        
+                &::after {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: -50px;
+                    width: 50px;
+                    height: 50px;
+                    background: transparent;
+                    border-top-left-radius: 50px;
+                    box-shadow: -15px -15px 0 15px $primary-grey;
+                }
+            }
+    
+            .text {
+                position: absolute;
+                width: 100%;
+                padding: 30px;
+                padding-top: 150px;
+                text-align: center;
+            }
+    
+            h2 {
+                text-shadow: -1px -1px 0 $primary-grey, 1px -1px 0 $primary-grey, -1px 1px 0 $primary-grey, 1px 1px 0 $primary-grey;
+            }
+    
+            p {
+                padding: 10px;
+                padding-top: 0px;
+            }
+    
+            mat-icon {
+                transform: scale(3);
+                margin-top: 30px;
+            }
+    
+            button {
+                margin-top: 10px;
+                padding: 10px 20px;
+                border-radius: 22px;
+                transition: transform 0.3s;
+                font-size: 14px;
+                letter-spacing: 0;
+                background-color: transparent;
+                border: 1px solid $white;
+                color: $white;
+    
+                &:hover {
+                    transform: scale(1.1);
+                    background-color: $white;
+                    border: 0px;
+                    color: $primary-grey;
+                }
+            }
+        }
+
+        .ai-card {
+            width: 400px;
+            margin: 50px;
+            transition: transform 0.3s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            img {
+                max-height: 300px;
+            }
+
+            p {
+                margin: 10px;
+                margin-left: 0px;
+            }
+
+            .btn-play {
+                padding: 10px 20px;
+                border-radius: 22px;
+                font-size: 14px;
+                background-color: transparent;
+                color: $primary-grey;
+                text-transform: uppercase;
+                margin-right: 10px;
+                transition: background 0.3s;
+            
+                &:hover {
+                  background: $primary-grey;
+                  color: $white;
+                }
+            }
+
+            .btn-lm {
+                border-radius: 22px;
+            }
+        }
+
+        .back-button {
+            position: absolute;
+            top: 40px;
+            left: 100px;
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .home {
+        &-content {
+            overflow-y: scroll;
+        }
+    }
+}
