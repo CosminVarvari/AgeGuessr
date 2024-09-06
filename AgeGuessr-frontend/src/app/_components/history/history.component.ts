@@ -35,7 +35,9 @@ export class HistoryComponent implements OnInit, AfterViewInit {
 
   loadUserGames() {
     this.gameService.getGames().subscribe(games => {
-      this.games = games.filter(game => game.username1 === this.currentUser.username || game.username2 === this.currentUser.username);
+      this.games = games
+        .filter(game => game.username1 === this.currentUser.username || game.username2 === this.currentUser.username); 
+      this.games.reverse();
       this.dataSource.data = this.games;
     });
   }

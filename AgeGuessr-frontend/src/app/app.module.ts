@@ -21,6 +21,7 @@ import { GamePvaiComponent } from './_components/games/game-pvai/game-pvai.compo
 import { LeaderboardComponent } from './_components/leaderboard/leaderboard.component';
 import { ProfileComponent } from './_components/profile/profile.component';
 import { HistoryComponent } from './_components/history/history.component';
+import { FilterPipe } from './_components/shared/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { HistoryComponent } from './_components/history/history.component';
     GamePvaiComponent,
     LeaderboardComponent,
     ProfileComponent,
-    HistoryComponent
+    HistoryComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

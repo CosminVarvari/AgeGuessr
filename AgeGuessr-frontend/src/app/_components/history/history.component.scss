@@ -1,25 +1,98 @@
+@import "./../../../assets/styles/variables.scss";
+
 .history-container {
-    height: 100vh;
+
+  .history {
+    height: calc(100vh - 132px);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    background-color: #f8f8f8;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $off-white;
   }
-  
+
   h1 {
+    margin-top: 100px;
     text-align: center;
-    color: #333;
+    color: $primary-grey;
+    margin-bottom: 60px;
   }
-  
+
+  .table-wrapper {
+    height: fit-content;
+    width: 80%;
+  }
+
   .game-entry {
-    padding: 10px;
+    padding: 10px 25px;
     margin-bottom: 10px;
     border-bottom: 1px solid #ccc;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+
+    mat-icon {
+      transform: scale(2);
+      height: 25px;
+      width: 25px;
+    }
+
+    .bot-name {
+      padding: 0px 15px;
+      width: 60px;
+      font-family: $title-font;
+      font-size: 14px;
+      color: $off-white;
+      text-transform: uppercase;
+    }
+
+    .answer {
+      font-family: $regular-font;
+      font-size: 14px;
+      font-weight: bold;
+      color: $primary-grey;
+      padding: 0px 10px;
+    }
+
+    .verdict {
+      font-family: $regular-font;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding: 0px 15px;
+      margin-left: auto;
+    }
+
+    .loss {
+      color: $dark-red;
+    }
+
+    .win {
+      color: $olive-green;
+    }
   }
-  
-  .mat-paginator {
-    margin: 20px 0;
+
+  .red {
+    background-color: $pastel-red;
   }
-  
+
+  .green {
+    background-color: $pastel-green;
+  }
+}
+
+@media screen and (max-width: 620px) {
+  .history-container {
+    .table-wrapper {
+      width: 100%;
+    }
+    .game-entry .bot-name {
+      padding-left: 0px;
+    }
+
+    .game-entry mat-icon {
+      display: none;
+    }
+  }
+}

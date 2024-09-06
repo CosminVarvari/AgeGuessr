@@ -5,22 +5,25 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Game } from 'src/app/_models/game';
 import { LeaderboardEntry } from 'src/app/_models/leaderboard';
 import { GameService } from 'src/app/_services/game.service';
-
+import { FilterPipe } from '../shared/filter.pipe';
 
 @Component({
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
-  styleUrls: ['./leaderboard.component.scss']
+  styleUrls: ['./leaderboard.component.scss'],
+  providers: [FilterPipe] // Add FilterPipe to the providers
 })
 export class LeaderboardComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['username', 'gamesWon', 'gamesLost', 'totalGames', 'winrate'];
   dataSource: MatTableDataSource<LeaderboardEntry>;
+  initialData: any;
   isLoadingResults = true;
+  searchValue: any;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private gameService: GameService) {
+  constructor(private gameService: GameService, private filterPipe: FilterPipe) {
     this.dataSource = new MatTableDataSource<LeaderboardEntry>([]);
   }
 
@@ -76,5 +79,22 @@ export class LeaderboardComponent implements OnInit, AfterViewInit {
     });
 
     this.dataSource.data = leaderboard.sort((a, b) => b.winrate - a.winrate);
+    this.initialData = leaderboard.sort((a, b) => b.winrate - a.winrate);
+  }
+
+  applyFilter() {
+    if (this.searchValue) {
+      this.dataSource.data = this.filterPipe.transform(this.dataSource.data, 'username', this.searchValue);
+    } else {
+      this.dataSource.data = this.initialData;
+    }
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
+  }
+
+  onSearchChange(searchValue: string) {
+    this.searchValue = searchValue;
+    this.applyFilter();
   }
 }

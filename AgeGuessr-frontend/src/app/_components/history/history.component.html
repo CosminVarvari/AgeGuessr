@@ -1,13 +1,28 @@
 <div class="history-container">
-    <app-navbar></app-navbar>
+  <app-navbar></app-navbar>
+  <div class="history">
     <h1>Game History</h1>
-    <ng-container *ngIf="paginator">
-      <div *ngFor="let game of dataSource.data.slice(paginator.pageIndex * paginator.pageSize, (paginator.pageIndex + 1) * paginator.pageSize)" class="game-entry">
-        <p>Game between: {{ game.username1 }} vs {{ game.is_pvai ? 'EasyAI' : game.username2 }}</p>
-        <p>Winner: {{ game.winner }}</p>
-      </div>
-    </ng-container>
-    <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
-    <app-footer></app-footer>
+    <div class="table-wrapper">
+      <ng-container class="table" *ngIf="paginator">
+        <div *ngFor="
+          let game of dataSource.data.slice(
+            paginator.pageIndex * paginator.pageSize,
+            (paginator.pageIndex + 1) * paginator.pageSize
+          )
+        " class="game-entry" [ngClass]="game.winner == 'ai' ? 'red' : 'green'">
+          <mat-icon *ngIf="game.tip_ai === 'easy'">face</mat-icon>
+          <mat-icon *ngIf="game.tip_ai === 'hard'">smart_toy</mat-icon>
+          <span class="bot-name" *ngIf="game.tip_ai === 'hard'">GeniusBot</span>
+          <span class="bot-name" *ngIf="game.tip_ai === 'easy'">EasyBot</span>
+          <span class="answer">You: {{game.user1_answer}}</span>
+          <span class="answer">AI: {{game.ai_answer}}</span>
+          <span class="answer">Real Age: {{game.image!.realAge}}</span>
+          <span *ngIf="game.winner === 'ai'" class="verdict loss">defeat</span>
+          <span *ngIf="game.winner !== 'ai'" class="verdict win">victory</span>
+        </div>
+      </ng-container>
+      <mat-paginator [pageSizeOptions]="[5]" showFirstLastButtons></mat-paginator>
+    </div>
   </div>
-  
+  <app-footer></app-footer>
+</div>
